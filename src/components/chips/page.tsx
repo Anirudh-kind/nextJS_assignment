@@ -1,17 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { Tag, TagLabel, TagCloseButton } from "@chakra-ui/react";
+import { daysInWeek } from "@/constants/data";
 
 const chips: React.FC = () => {
-  const [days, setDays] = useState<Array<string>>([
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ]);
+  const [days, setDays] = useState<Array<string>>([...daysInWeek]);
 
   return (
     <>

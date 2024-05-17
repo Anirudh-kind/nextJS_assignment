@@ -4,7 +4,7 @@ interface Post {
   posted_on: string;
 }
 
-export const data: Array<Post> = [
+const data: Array<Post> = [
   { text: "A great Post", id: 990, posted_on: "Fri Nov 27 2020" },
   {
     text: "Hi, I am new to this platform",
@@ -46,3 +46,14 @@ export const data: Array<Post> = [
     posted_on: "Sun Nov 22 2020",
   },
 ];
+const daysInWeek: Array<string> = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
+export {daysInWeek,data}

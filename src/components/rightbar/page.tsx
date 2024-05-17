@@ -1,10 +1,12 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-const sidebar: React.FC = () => {
-  const _Points: Array<string> = ["HOME", "ABOUT", "LOGIN"];
+import { daysInWeek } from "@/constants/data";
+
+const RightBar: React.FC = () => {
+  const _Points: Array<string> = [...daysInWeek];
   return (
     <>
-      <Box borderRight="1px solid grey" h="100vh" w="10vw">
+      <Box flex="1" borderRight="1px solid grey" h="100vh">
         {_Points.map((ele: string, ind: number) => (
           <Text align="center" cursor="pointer" key={ind}>
             {ele}
@@ -15,4 +17,4 @@ const sidebar: React.FC = () => {
   );
 };
 
-export default sidebar;
+export default RightBar;
