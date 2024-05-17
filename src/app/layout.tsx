@@ -23,7 +23,6 @@ export default function RootLayout({
         <Flex>
           <SimpleSidebar />
           <Providers>{children}</Providers>
-
           <RightBar />
         </Flex>
       </body>

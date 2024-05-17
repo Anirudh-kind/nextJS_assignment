@@ -4,7 +4,7 @@ import Feeds from "@/components/feeds/page";
 const page = () => {
   const arr = ["HELLO", "HELLO", "HELLO", "HELLO", "HELLO"];
   return (
-    <Box w="70%">
+    <Box w="70%" ml='10vw'> 
       <Text align="center">Feed</Text>
       <Center>
         <Box w="80%">
