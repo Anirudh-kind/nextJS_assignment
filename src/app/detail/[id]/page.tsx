@@ -1,19 +1,19 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Box, Text, Flex } from "@chakra-ui/react";
 import { data } from "@/constants/data";
 
-import { headers } from "next/headers";
+import { usePathname } from "next/navigation";
 
-const id: React.FC<Request> = (request: Request) => {
-  const headersList = headers();
-  
-  const fullUrl = headersList.get("referer") || "";
-  console.log("fullURL:" + fullUrl);
+const id: React.FC = () => {
+  const pathname: string = usePathname();
+  const [lastPathSegment, setLastPathSegment] = useState("");
 
-  // Extracting the last segment of the URL
-  const url = new URL(fullUrl);
-  const lastPathSegment = url.pathname.split("/").pop(); // Extracts the last path segment
-    console.log(lastPathSegment)
+  useEffect(() => {
+    const temp: any = pathname.split("/").pop();
+    setLastPathSegment(temp);
+  }, [pathname]);
+
   return (
     <>
       <Flex
@@ -29,6 +29,7 @@ const id: React.FC<Request> = (request: Request) => {
           </Text>
           <Text as="b">Hellow</Text>
           <Text color="gray.600">posted on {lastPathSegment}</Text>
+          {/* <Text color="gray.600">ans: {ans}</Text> */}
         </Box>
       </Flex>
     </>
