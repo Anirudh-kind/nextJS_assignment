@@ -1,6 +1,6 @@
 import RightBar from "@/components/rightbar/page";
 import SimpleSidebar from "@/components/sidebar/page";
-import { Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Flex>
-          <SimpleSidebar />
+        <SimpleSidebar />
+        <Box ml="10vw" mr="200px">
           <Providers>{children}</Providers>
-          <RightBar />
-        </Flex>
+        </Box>
+        <RightBar />
       </body>
     </html>
   );

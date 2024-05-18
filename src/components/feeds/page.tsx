@@ -7,8 +7,7 @@ interface props {
 }
 
 const Feeds: React.FC<props> = ({content,date}:props) => {
-  // const content: string = "HELLO";
-  // const date: string = "thu may 16 2024";
+  
   return (
     <>
       <Box mt='10'

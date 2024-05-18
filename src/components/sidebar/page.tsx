@@ -1,7 +1,7 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 const sidebar: React.FC = () => {
-  const _Points: Array<string> = ["HOME", "ABOUT", "LOGIN"];
+  const _Points: Array<string> = ["HOME", "ABOUT"];
   return (
     <>
       <Flex
@@ -18,6 +18,7 @@ const sidebar: React.FC = () => {
               {ele}
             </Text>
           ))}
+          <Button colorScheme="blue">login</Button>
         </Box>
       </Flex>
     </>

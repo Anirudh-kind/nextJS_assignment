@@ -1,15 +1,17 @@
 import { Box, Center, Input, Text, Button, Flex } from "@chakra-ui/react";
 import Chips from "../components/chips/page";
 import Feeds from "@/components/feeds/page";
+import { data } from "@/constants/data";
 const page = () => {
   const arr = ["HELLO", "HELLO", "HELLO", "HELLO", "HELLO"];
   return (
-    <Box w="70%" ml='10vw'> 
+    <Box>
       <Text align="center">Feed</Text>
+
       <Center>
-        <Box w="80%">
+        <Box>
           <Input type="string" placeholder="large size" size="lg" />
-          <Box mt="10px" w="100%" textAlign="right">
+          <Box mt="10px" textAlign="right">
             <Button colorScheme="teal" type="submit">
               Post
             </Button>
@@ -17,9 +19,9 @@ const page = () => {
         </Box>
       </Center>
       <Chips />
-      {arr.map((ele) => (
-        <Flex justifyContent="center">
-          <Feeds date="thu may 16 2024" content="HELLO" />
+      {data.map((ele) => (
+        <Flex key={ele.id} justifyContent="center">
+          <Feeds date={ele.posted_on} content={ele.text} />
         </Flex>
       ))}
     </Box>
