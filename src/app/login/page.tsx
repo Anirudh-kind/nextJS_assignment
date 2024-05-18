@@ -1,13 +1,17 @@
-import React from 'react'
-import { Button } from '@chakra-ui/react'
+import React from "react";
+import { Button, Center } from "@chakra-ui/react";
 
 const page = () => {
   return (
-    <div>
+    <>
+      <Center>
         <h1>this is a guest login</h1>
-        <Button>login</Button>
-    </div>
-  )
-}
+      </Center>
+      <Center>
+        <Button colorScheme="blue">login</Button>
+      </Center>
+    </>
+  );
+};
 
-export default page
+export default page;
