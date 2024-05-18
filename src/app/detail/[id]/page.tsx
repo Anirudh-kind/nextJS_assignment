@@ -1,19 +1,26 @@
 "use client";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { Box, Text, Flex } from "@chakra-ui/react";
 import { data } from "@/constants/data";
 
 import { usePathname } from "next/navigation";
 
 const id: React.FC = () => {
+
+  //   const pathname: string = usePathname();
+  //   const [lastPathSegment, setLastPathSegment] = useState("");
+
+  //   useEffect(() => {
+  //     const temp: any = pathname.split("/").pop();
+  //     setLastPathSegment(temp);
+  //   }, [pathname]);
+
+  
+
   const pathname: string = usePathname();
-  const [lastPathSegment, setLastPathSegment] = useState("");
-
-  useEffect(() => {
-    const temp: any = pathname.split("/").pop();
-    setLastPathSegment(temp);
-  }, [pathname]);
-
+  // console.log(pathname.split("/"));
+  const lastPathSegment = pathname.split("/").pop() || ""; // {|| ""} to remove TS warning
+  const obj = data.find((ele) => ele.id === +lastPathSegment);
   return (
     <>
       <Flex
@@ -27,9 +34,8 @@ const id: React.FC = () => {
           <Text fontWeight="900" mb="10px">
             Post
           </Text>
-          <Text as="b">Hellow</Text>
-          <Text color="gray.600">posted on {lastPathSegment}</Text>
-          {/* <Text color="gray.600">ans: {ans}</Text> */}
+          <Text as="b">{obj?.text}</Text>
+          <Text color="gray.600">posted on {obj?.posted_on}</Text>
         </Box>
       </Flex>
     </>

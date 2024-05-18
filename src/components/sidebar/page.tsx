@@ -1,7 +1,15 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import Link from "next/link";
 const sidebar: React.FC = () => {
-  const _Points: Array<string> = ["HOME", "ABOUT"];
+  interface points {
+    name: string;
+    route: string;
+  }
+  const _Points: Array<points> = [
+    { name: "HOME", route: "/" },
+    { name: "ABOUT", route: "/about" },
+  ];
   return (
     <>
       <Flex
@@ -13,10 +21,20 @@ const sidebar: React.FC = () => {
         w="10vw"
       >
         <Box>
-          {_Points.map((ele: string, ind: number) => (
-            <Text fontWeight="bold" align="center" cursor="pointer" key={ind}>
-              {ele}
-            </Text>
+          {_Points.map((ele: points, ind: number) => (
+            <Box>
+              <Link
+                style={{
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+                href={ele.route}
+                key={ind}
+              >
+                {ele.name}
+              </Link>
+            </Box>
           ))}
           <Button colorScheme="blue">login</Button>
         </Box>
