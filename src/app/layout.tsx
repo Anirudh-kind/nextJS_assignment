@@ -4,6 +4,7 @@ import { Box } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import { ReduxProvider } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <SimpleSidebar />
         <Box ml="10vw" mr="200px">
-          <Providers>{children}</Providers>
+          <ReduxProvider>
+            <Providers>{children}</Providers>
+          </ReduxProvider>
         </Box>
         <RightBar />
       </body>
