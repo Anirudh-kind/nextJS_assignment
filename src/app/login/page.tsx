@@ -11,7 +11,7 @@ const Page = () => {
       username: "guest",
       token: "dummy-token-12345",
     };
-    localStorage.setItem("user", JSON.stringify(dummyUser));
+    sessionStorage.setItem("user", JSON.stringify(dummyUser));
     router.push("/");
     console.log("User logged in:", dummyUser);
   };

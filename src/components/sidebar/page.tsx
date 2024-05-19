@@ -1,6 +1,7 @@
+"use client";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface Point {
   name: string;
@@ -8,6 +9,20 @@ interface Point {
 }
 
 const Sidebar: React.FC = () => {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const userString = sessionStorage.getItem("user");
+    if (userString) {
+      try {
+        setUser(JSON.parse(userString));
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []); // Empty dependency array ensures this effect runs only once
+  
+  
   const points: Array<Point> = [
     { name: "HOME", route: "/" },
     { name: "ABOUT", route: "/about/a" },
@@ -38,7 +53,18 @@ const Sidebar: React.FC = () => {
             </Link>
           </Box>
         ))}
-        <Button colorScheme="blue">Login</Button>
+
+        {user && (
+          <Button
+            onClick={() => {
+              sessionStorage.clear();
+              setUser("");
+            }}
+            colorScheme="blue"
+          >
+            Logout
+          </Button>
+        )}
       </Box>
     </Flex>
   );
