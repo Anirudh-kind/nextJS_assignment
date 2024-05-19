@@ -21,13 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SimpleSidebar />
-        <Box ml="10vw" mr="200px">
-          <ReduxProvider>
+        <ReduxProvider>
+          <SimpleSidebar />
+          <Box ml="10vw" mr="200px">
             <Providers>{children}</Providers>
-          </ReduxProvider>
-        </Box>
-        <RightBar />
+          </Box>
+          <RightBar />
+        </ReduxProvider>
       </body>
     </html>
   );

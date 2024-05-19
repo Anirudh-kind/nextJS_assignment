@@ -2,8 +2,12 @@
 import React from "react";
 import { Button, Center } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import { logIn } from "@/redux/features/authSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 
 const Page = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
   const userLogin = () => {
@@ -14,6 +18,7 @@ const Page = () => {
     sessionStorage.setItem("user", JSON.stringify(dummyUser));
     router.push("/");
     console.log("User logged in:", dummyUser);
+    dispatch(logIn());
   };
   return (
     <>
