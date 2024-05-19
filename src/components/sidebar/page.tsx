@@ -20,13 +20,16 @@ const Sidebar: React.FC = () => {
         console.error("Error parsing user data:", error);
       }
     }
-  }, []); // Empty dependency array ensures this effect runs only once
-  
-  
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.clear();
+    setUser("");
+  };
+
   const points: Array<Point> = [
     { name: "HOME", route: "/" },
     { name: "ABOUT", route: "/about/a" },
-    { name: "login", route: "/login" },
   ];
 
   return (
@@ -54,16 +57,21 @@ const Sidebar: React.FC = () => {
           </Box>
         ))}
 
-        {user && (
-          <Button
-            onClick={() => {
-              sessionStorage.clear();
-              setUser("");
-            }}
-            colorScheme="blue"
-          >
+        {user ? (
+          <Button onClick={handleLogout} colorScheme="blue">
             Logout
           </Button>
+        ) : (
+          <Link
+            href="/login"
+            style={{
+              cursor: "pointer",
+              fontWeight: "bold",
+              display: "block",
+            }}
+          >
+            Login
+          </Link>
         )}
       </Box>
     </Flex>
