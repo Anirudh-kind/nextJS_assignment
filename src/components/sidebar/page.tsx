@@ -10,7 +10,7 @@ interface Point {
 const Sidebar: React.FC = () => {
   const points: Array<Point> = [
     { name: "HOME", route: "/" },
-    { name: "ABOUT", route: "/about" },
+    { name: "ABOUT", route: "/about/a" },
   ];
 
   return (
