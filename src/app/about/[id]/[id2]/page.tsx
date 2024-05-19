@@ -7,8 +7,10 @@ const About = () => {
   const path = usePathname();
   const PathArr = path.split("/");
 
-  const lastPathname = PathArr[PathArr.length - 1];
-//   console.log(PathArr.length);
+  const left = PathArr[PathArr.length - 2];
+  const right = +PathArr[PathArr.length - 1];
+
+  console.log(PathArr);
 
   const options = ["a", "b", "c", "d"];
 
@@ -21,9 +23,9 @@ const About = () => {
             <Box>
               {options.map((ele) => {
                 return (
-                  <Link href={ele}>
+                  <Link href={`/about/${ele}`}>
                     <Text
-                      color={lastPathname === ele ? "red" : "grey.600"}
+                      color={left === ele ? "red" : "grey.600"}
                       mt="4"
                       mb="4"
                       textTransform="uppercase"
@@ -39,15 +41,15 @@ const About = () => {
             <Box>
               {options.map((ele, ind) => {
                 return (
-                  <Link href={`${lastPathname}/${ind + 1}`}>
-                    <Text color="grey.600" mt="4" mb="4">
-                      <span style={{ textTransform: "uppercase" }}>
-                        {lastPathname}
-                      </span>
+                  <Link href={`${ind+1}`}>
+                    <Text
+                      color={right === ind + 1 ? "red" : "grey.600"}
+                      mt="4"
+                      mb="4"
+                    >
+                      <span style={{ textTransform: "uppercase" }}>{left}</span>
                       :OPTION info{" "}
-                      <span style={{ textTransform: "uppercase" }}>
-                        {lastPathname}
-                      </span>
+                      <span style={{ textTransform: "uppercase" }}>{left}</span>
                       {ind + 1}
                     </Text>
                   </Link>
@@ -55,14 +57,16 @@ const About = () => {
               })}
             </Box>
           </Flex>
-          {/* <Flex justifyContent="center" alignItems="center">
+          <Flex justifyContent="center" alignItems="center">
             <Box>
               <Text color="grey.600" mt="4" mb="4">
                 Details
               </Text>
-              <Text>1 | 1 1</Text>
+              <Text>
+                {options.findIndex((ele) => ele === left) + 1} | {right} 1
+              </Text>
             </Box>
-          </Flex> */}
+          </Flex>
         </Grid>
       </Box>
     </>

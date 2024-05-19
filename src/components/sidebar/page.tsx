@@ -11,6 +11,7 @@ const Sidebar: React.FC = () => {
   const points: Array<Point> = [
     { name: "HOME", route: "/" },
     { name: "ABOUT", route: "/about/a" },
+    { name: "login", route: "/login" },
   ];
 
   return (
