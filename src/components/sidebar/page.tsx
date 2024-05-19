@@ -1,6 +1,6 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 interface Point {
   name: string;
@@ -25,17 +25,15 @@ const Sidebar: React.FC = () => {
       <Box>
         {points.map((point, index) => (
           <Box key={index} textAlign="center" mb={4}>
-            <Link href={point.route}>
-              <Box
-                as="a"
-                cursor="pointer"
-                fontWeight="bold"
-                display="block"
-                textDecoration="none"
-                _hover={{ textDecoration: "underline" }}
-              >
-                {point.name}
-              </Box>
+            <Link
+              style={{
+                cursor: "pointer",
+                fontWeight: "bold",
+                display: "block",
+              }}
+              href={point.route}
+            >
+              <Box _hover={{ textDecoration: "underline" }}>{point.name}</Box>
             </Link>
           </Box>
         ))}

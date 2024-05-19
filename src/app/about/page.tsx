@@ -1,9 +1,13 @@
-import React from 'react'
+import { Text } from "@chakra-ui/react";
+import React from "react";
 
 const About = () => {
   return (
-    <div>this is about page</div>
-  )
-}
+    <>
+      {/* <Text textAlign="center">About</Text> */}
+      <div>about</div>
+    </>
+  );
+};
 
-export default About
+export default About;
