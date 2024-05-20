@@ -1,5 +1,4 @@
 "use client";
-import { data } from "@/constants/data";
 import { useAppSelector } from "@/redux/store";
 import { Flex } from "@chakra-ui/react";
 import Link from "next/link";
