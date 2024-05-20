@@ -7,20 +7,19 @@ interface Post {
   posted_on: string;
 }
 
-const initialState: Array<Post> = [...data];
-
+const initialState: Array<Post> = data//[...data];
 export const feedSlice = createSlice({
-  name: 'feed',
+  name: "feed",
   initialState,
   reducers: {
     deleteFeed(state, action) {
-      const { id } = action.payload;
+      const id = action.payload;
       return state.filter((ele) => ele.id !== id);
     },
     addFeed(state, action) {
       // You can define the logic for adding a feed here
-    }
-  }
+    },
+  },
 });
 
 export const { deleteFeed, addFeed } = feedSlice.actions;

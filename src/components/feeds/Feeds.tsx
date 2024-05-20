@@ -1,19 +1,23 @@
-import React from "react";
-import { Flex } from "@chakra-ui/react";
+"use client";
 import { data } from "@/constants/data";
+import { useAppSelector } from "@/redux/store";
+import { Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import FeedCard from "./page";
+
 const Feeds = () => {
+  const dataState = useAppSelector((state) => state.feedSlice);
+  // console.log(dataState);
   return (
     <div>
-      {data.map((ele) => (
+      {dataState.map((ele) => (
         <Link
           style={{ cursor: "pointer" }}
           href={`/detail/${ele.id}`}
           key={ele.id}
         >
           <Flex justifyContent="center">
-            <FeedCard date={ele.posted_on} content={ele.text} />
+            <FeedCard id={ele.id} date={ele.posted_on} content={ele.text} />
           </Flex>
         </Link>
       ))}
