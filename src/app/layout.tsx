@@ -1,4 +1,3 @@
-import RightBar from "@/components/rightbar/page";
 import SimpleSidebar from "@/components/sidebar/page";
 import { Box } from "@chakra-ui/react";
 import type { Metadata } from "next";
@@ -26,7 +25,6 @@ export default function RootLayout({
           <Box ml="10vw" mr="200px">
             <Providers>{children}</Providers>
           </Box>
-          <RightBar />
         </ReduxProvider>
       </body>
     </html>

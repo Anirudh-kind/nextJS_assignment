@@ -47,13 +47,13 @@ const data: Array<Post> = [
   },
 ];
 const daysInWeek: Array<string> = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
+  "sun",
+  "mon",
+  "tue",
+  "wed",
+  "thu",
+  "fri",
+  "sat",
 ];
 
-export {daysInWeek,data}
+export { daysInWeek, data };
