@@ -1,10 +1,10 @@
 "use client";
+import { logOut } from "@/redux/features/authSlice";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { logOut } from "@/redux/features/authSlice";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch, useAppSelector } from "@/redux/store";
 
 interface Point {
   name: string;
@@ -15,22 +15,8 @@ const Sidebar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const userState= useAppSelector((state)=>state.authSlice.isAuth)
 
-  // const [user, setUser] = useState("");
-
-  // useEffect(() => {
-  //   const userString = sessionStorage.getItem("user");
-  //   if (userString) {
-  //     try {
-  //       setUser(JSON.parse(userString));
-  //     } catch (error) {
-  //       console.error("Error parsing user data:", error);
-  //     }
-  //   }
-  // }, []);
-
   const handleLogout = () => {
     sessionStorage.clear();
-    // setUser("");
     dispatch(logOut());
   };
 

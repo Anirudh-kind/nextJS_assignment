@@ -7,7 +7,7 @@ interface Props {
   date: string;
 }
 
-const Feeds: React.FC<Props> = ({ content, date }: Props) => {
+const FeedCard: React.FC<Props> = ({ content, date }: Props) => {
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation(); 
@@ -40,4 +40,4 @@ const Feeds: React.FC<Props> = ({ content, date }: Props) => {
   );
 };
 
-export default Feeds;
+export default FeedCard;
