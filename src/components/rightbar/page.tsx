@@ -1,23 +1,15 @@
 "use client";
 import { daysInWeek } from "@/constants/data";
+import { changeSpecificDay } from "@/redux/features/specificDaySlice";
+import { useAppSelector } from "@/redux/store";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
-import { changeSpecificDay } from "@/redux/features/specificDaySlice";
 const RightBar: React.FC = () => {
   const dispatch = useDispatch();
   const specificDay = useAppSelector((state) => state.specificDaySlice);
   const dataState = useAppSelector((state) => state.feedSlice);
-  const postCounts: { [key: string]: number } = {
-    sun: 0,
-    mon: 0,
-    tue: 0,
-    wed: 0,
-    thu: 0,
-    fri: 0,
-    sat: 0,
-  };
+  const postCounts: { [key: string]: number } = {sun: 0,mon: 0,tue: 0,wed: 0,thu: 0,fri: 0,sat: 0};
   dataState.forEach((post) => {
     const date = new Date(post.posted_on);
     const day = daysInWeek[date.getDay()];

@@ -6,10 +6,20 @@ import FeedCard from "./page";
 
 const Feeds = () => {
   const dataState = useAppSelector((state) => state.feedSlice);
-  // console.log(dataState);
+
+  const specificDay = useAppSelector((state) => state.specificDaySlice);
+
+  let dummy = [...dataState];
+  if (specificDay !== "all") {
+    dummy = dummy.filter((ele) => {
+      const splitted = ele.posted_on.split(" ")[0];
+      return ele.posted_on !== specificDay;
+    });
+  }
+
   return (
     <div>
-      {dataState.map((ele) => (
+      {dummy.map((ele) => (
         <Link
           style={{ cursor: "pointer" }}
           href={`/detail/${ele.id}`}
