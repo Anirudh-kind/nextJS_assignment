@@ -56,7 +56,12 @@ const TopInput = () => {
           size="lg"
         />
         <Box mt="10px" textAlign="right">
-          <Button onClick={handleClick} colorScheme="teal" type="submit">
+          <Button
+            isDisabled={inputValue === ""}
+            onClick={handleClick}
+            colorScheme="teal"
+            type="submit"
+          >
             Post
           </Button>
         </Box>
