@@ -8,7 +8,6 @@ import { changeSpecificDay } from "@/redux/features/specificDaySlice";
 const RightBar: React.FC = () => {
   const dispatch = useDispatch();
   const specificDay = useAppSelector((state) => state.specificDaySlice);
-
   const dataState = useAppSelector((state) => state.feedSlice);
   const postCounts: { [key: string]: number } = {
     sun: 0,
@@ -27,9 +26,9 @@ const RightBar: React.FC = () => {
   const handleDayChange = (currentDay: string) => {
     dispatch(changeSpecificDay(currentDay));
   };
-  const removeSpecificDay=()=>{
-    dispatch(changeSpecificDay('all'))
-  }
+  const removeSpecificDay = () => {
+    dispatch(changeSpecificDay("all"));
+  };
 
   return (
     <Flex
@@ -54,7 +53,7 @@ const RightBar: React.FC = () => {
           <Text
             fontWeight={specificDay === day ? "900" : "normal"}
             onClick={() => {
-              specificDay !== day ? handleDayChange(day) :removeSpecificDay()
+              specificDay !== day ? handleDayChange(day) : removeSpecificDay();
             }}
             color="white"
             align="center"
