@@ -18,7 +18,7 @@ const FeedCard: React.FC<Props> = ({ content, date, id }: Props) => {
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     console.log("btn clicked", id);
-    dispatch(deleteFeed(id)); // Correctly dispatching the id
+    dispatch(deleteFeed(id));
   };
 
   return (
