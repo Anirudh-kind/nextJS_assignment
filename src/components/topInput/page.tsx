@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Center, Box, Input, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { addFeed } from "@/redux/features/feedSlice";
+import { useRouter } from 'next/navigation'
+import { useAppSelector, AppDispatch } from "@/redux/store";
 
 interface Post {
   text: string;
@@ -11,47 +13,43 @@ interface Post {
 }
 
 const TopInput = () => {
-  const dispatch = useDispatch();
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
   const [inputValue, setInputValue] = useState("");
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+
   const handleClick = () => {
-    let d = new Date();
-    const daysOfWeek = ["Mon", "Tues", "Wednes", "Thurs", "Fri", "Sat", "Sun"];
-    const months = [
-      "Jan",
-      "Feb",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+    if (isAuth) {
+      const d = new Date();
+      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ];
 
-    const post: Post = {
-      text: inputValue,
-      id: Date.now(),
-      posted_on: `${daysOfWeek[d.getDay()]}  ${
-        months[d.getMonth() + 1]
-      } ${d.getDate()}  ${d.getFullYear()}`,
-    };
+      const post: Post = {
+        text: inputValue,
+        id: Date.now(),
+        posted_on: `${daysOfWeek[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()} ${d.getFullYear()}`,
+      };
 
-    dispatch(addFeed(post));
+      dispatch(addFeed(post));
+      setInputValue("");
+    } else {
+      router.push('/login');
+    }
   };
+
   return (
     <Center>
       <Box>
         <Input
           value={inputValue}
           onChange={handleInputChange}
-          type="string"
+          type="text"
           placeholder="large size"
           size="lg"
         />

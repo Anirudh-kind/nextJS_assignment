@@ -9,17 +9,20 @@ const Feeds = () => {
 
   const specificDay = useAppSelector((state) => state.specificDaySlice);
 
-  let dummy = [...dataState];
+  let filteredData = [...dataState];
   if (specificDay !== "all") {
-    dummy = dummy.filter((ele) => {
-      const splitted = ele.posted_on.split(" ")[0];
-      return ele.posted_on !== specificDay;
+    filteredData = filteredData.filter((ele) => {
+      const date = new Date(ele.posted_on);
+      const dayOfWeek = date
+        .toLocaleString("en-US", { weekday: "short" })
+        .toLowerCase(); // stack overflow how to extract dayOfweek from date
+      return dayOfWeek === specificDay;
     });
   }
 
   return (
     <div>
-      {dummy.map((ele) => (
+      {filteredData.map((ele) => (
         <Link
           style={{ cursor: "pointer" }}
           href={`/detail/${ele.id}`}
