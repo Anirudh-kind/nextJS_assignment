@@ -5,6 +5,8 @@ import Link from "next/link";
 import FeedCard from "./page";
 
 const Feeds = () => {
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
+
   const dataState = useAppSelector((state) => state.feedSlice);
 
   const specificDay = useAppSelector((state) => state.specificDaySlice);
@@ -25,7 +27,7 @@ const Feeds = () => {
       {filteredData.map((ele) => (
         <Link
           style={{ cursor: "pointer" }}
-          href={`/detail/${ele.id}`}
+          href={isAuth ? `/detail/${ele.id}` : "/login"}
           key={ele.id}
         >
           <Flex justifyContent="center">
