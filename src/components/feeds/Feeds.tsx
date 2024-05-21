@@ -2,7 +2,7 @@
 import { useAppSelector } from "@/redux/store";
 import { Flex } from "@chakra-ui/react";
 import Link from "next/link";
-import FeedCard from "./page";
+import FeedCard from "./FeedCard";
 
 const Feeds = () => {
   const isAuth = useAppSelector((state) => state.authSlice.isAuth);

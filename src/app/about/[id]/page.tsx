@@ -22,8 +22,10 @@ const About = () => {
     // console.log(userState);
     if (!userState) {
       router.push("/login");
+    } else if (!options.includes(lastPathname)) {
+      router.push("/about/a");
     }
-  }, [userState, router]);
+  }, [userState, router, lastPathname]);
 
   return (
     <>
