@@ -60,7 +60,7 @@ const About: React.FC = () => {
                 href={`/about/${secondLastPathname}/${ind + 1}`}
               >
                 <Text
-                  color={lastPathname == ind + 1 ? "red" : "grey.600"}
+                  color={+lastPathname == ind + 1 ? "red" : "grey.600"}
                   mt="4"
                   mb="4"
                 >
