@@ -4,15 +4,19 @@ interface AuthState {
   isAuth: boolean;
 }
 
+const userFromSession = sessionStorage.getItem("user");
+
 const initialState: AuthState = {
-  isAuth: false,
+  isAuth: !!userFromSession, // Convert userFromSession to boolean
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logOut: () => initialState,
+    logOut: (state) => {
+      state.isAuth = false;
+    },
     logIn: (state) => {
       state.isAuth = true;
     },
