@@ -2,25 +2,20 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { data } from "@/constants/data";
+import { useAppSelector } from "@/redux/store";
 
 import { usePathname } from "next/navigation";
 
 const id: React.FC = () => {
 
-  //   const pathname: string = usePathname();
-  //   const [lastPathSegment, setLastPathSegment] = useState("");
 
-  //   useEffect(() => {
-  //     const temp: any = pathname.split("/").pop();
-  //     setLastPathSegment(temp);
-  //   }, [pathname]);
+  const dataState = useAppSelector((state) => state.feedSlice);
 
-  
 
   const pathname: string = usePathname();
   // console.log(pathname.split("/"));
   const lastPathSegment = pathname.split("/").pop() || ""; // {|| ""} to remove TS warning
-  const obj = data.find((ele) => ele.id === +lastPathSegment);
+  const obj = dataState.find((ele) => ele.id === +lastPathSegment);
   return (
     <>
       <Flex
