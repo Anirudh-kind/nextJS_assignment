@@ -2,20 +2,37 @@
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/store";
 
 const About = () => {
+  const userState = useAppSelector((state) => state.authSlice.isAuth);
+  const router = useRouter();
+
   const path = usePathname();
   const PathArr = path.split("/");
 
   const left = PathArr[PathArr.length - 2];
   const right = +PathArr[PathArr.length - 1];
 
-  console.log(PathArr);
+  useEffect(() => {
+    // console.log(userState);
+    if (!userState) {
+      router.push("/login");
+    }
+  }, [userState, router]);
 
   const options = ["a", "b", "c", "d"];
 
   return (
     <>
+      {!userState && (
+        <>
+          <h1>You have entered a protected route, login first</h1>
+          <h1>Redirecting you to somewhere</h1>
+        </>
+      )}
       <Box overflowY="hidden" h="100vh">
         <Text textAlign="center">About</Text>
         <Grid h="100%" templateColumns="repeat(3, 1fr)" gap={1}>
@@ -41,7 +58,7 @@ const About = () => {
             <Box>
               {options.map((ele, ind) => {
                 return (
-                  <Link href={`${ind+1}`}>
+                  <Link href={`${ind + 1}`}>
                     <Text
                       color={right === ind + 1 ? "red" : "grey.600"}
                       mt="4"
