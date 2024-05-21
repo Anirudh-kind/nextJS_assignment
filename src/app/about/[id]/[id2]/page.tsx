@@ -1,98 +1,95 @@
 "use client";
-import { Box, Flex, Grid, Text } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/store";
+import { Box, Flex, Grid, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import useAuthRedirect from "@/hooks/useAuthRedirect";
+import { usePathname, useRouter } from "next/navigation";
+import useValidPath from "@/hooks/useValidPath";
 
-const About = () => {
-  const userState = useAppSelector((state) => state.authSlice.isAuth);
+const About: React.FC = () => {
   const router = useRouter();
-
   const path = usePathname();
-  const PathArr = path.split("/");
-  
-  const left = PathArr[PathArr.length - 2];
-  const right = +PathArr[PathArr.length - 1];
-  
   const options = ["a", "b", "c", "d"];
-  
+  const { lastPathname, secondLastPathname, isValid } = useValidPath(path, options);
+  const userState = useAuthRedirect("/login", options, secondLastPathname);
+
   useEffect(() => {
-    if (!userState) {
-      router.push("/login");
-    } else if (!options.includes(left) || isNaN(right) || right < 1 || right > options.length) {
+    if (userState && !isValid) {
       router.push("/about/a/1");
     }
-  }, [userState, left, right, router]);
+  }, [userState, isValid, router]);
+
+  if (!userState) {
+    return (
+      <div>
+        <h1>You have entered a protected route, login first</h1>
+        <h1>Redirecting you to somewhere</h1>
+      </div>
+    );
+  }
+
+  if (!isValid) {
+    return <div>Redirecting you to /about/a/1</div>;
+  }
 
   return (
-    <>
-      {!userState ? (
-        <>
-          <h1>You have entered a protected route, login first</h1>
-          <h1>Redirecting you to somewhere</h1>
-        </>
-      ) : (
-        <Box overflowY="hidden" h="100vh">
-          <Text textAlign="center">About</Text>
-          <Grid h="100%" templateColumns="repeat(3, 1fr)" gap={1}>
-            <Flex justifyContent="center" alignItems="center">
-              <Box>
-                {options.map((ele) => {
-                  return (
-                    <Link key={ele} href={`/about/${ele}/1`}>
-                      <Text
-                        color={left === ele ? "red" : "grey.600"}
-                        mt="4"
-                        mb="4"
-                        textTransform="uppercase"
-                      >
-                        OPTION {ele}
-                      </Text>
-                    </Link>
-                  );
-                })}
-              </Box>
-            </Flex>
-            <Flex justifyContent="center" alignItems="center">
-              <Box>
-                {options.map((ele, ind) => {
-                  return (
-                    <Link key={ind + 1} href={`/about/${left}/${ind + 1}`}>
-                      <Text
-                        color={right === ind + 1 ? "red" : "grey.600"}
-                        mt="4"
-                        mb="4"
-                      >
-                        <span style={{ textTransform: "uppercase" }}>
-                          {left}
-                        </span>
-                        : OPTION info{" "}
-                        <span style={{ textTransform: "uppercase" }}>
-                          {left}
-                        </span>
-                        {ind + 1}
-                      </Text>
-                    </Link>
-                  );
-                })}
-              </Box>
-            </Flex>
-            <Flex justifyContent="center" alignItems="center">
-              <Box>
-                <Text color="grey.600" mt="4" mb="4">
-                  Details
+    <Box overflowY="hidden" h="100vh">
+      <Text textAlign="center">About</Text>
+      <Grid h="100%" templateColumns="repeat(3, 1fr)" gap={1}>
+        <Flex justifyContent="center" alignItems="center">
+          <Box>
+            {options.map((ele) => (
+              <Link key={ele} href={`/about/${ele}/1`}>
+                <Text
+                  color={secondLastPathname === ele ? "red" : "grey.600"}
+                  mt="4"
+                  mb="4"
+                  textTransform="uppercase"
+                >
+                  OPTION {ele}
                 </Text>
-                <Text>
-                  {options.findIndex((ele) => ele === left) + 1} | {right} 1
+              </Link>
+            ))}
+          </Box>
+        </Flex>
+        <Flex justifyContent="center" alignItems="center">
+          <Box>
+            {options.map((ele, ind) => (
+              <Link
+                key={ind + 1}
+                href={`/about/${secondLastPathname}/${ind + 1}`}
+              >
+                <Text
+                  color={lastPathname == ind + 1 ? "red" : "grey.600"}
+                  mt="4"
+                  mb="4"
+                >
+                  <span style={{ textTransform: "uppercase" }}>
+                    {secondLastPathname}
+                  </span>
+                  : OPTION info{" "}
+                  <span style={{ textTransform: "uppercase" }}>
+                    {secondLastPathname}
+                  </span>
+                  {ind + 1}
                 </Text>
-              </Box>
-            </Flex>
-          </Grid>
-        </Box>
-      )}
-    </>
+              </Link>
+            ))}
+          </Box>
+        </Flex>
+        <Flex justifyContent="center" alignItems="center">
+          <Box>
+            <Text color="grey.600" mt="4" mb="4">
+              Details
+            </Text>
+            <Text>
+              {options.findIndex((ele) => ele === secondLastPathname) + 1} |{" "}
+              {lastPathname} 1
+            </Text>
+          </Box>
+        </Flex>
+      </Grid>
+    </Box>
   );
 };
 
