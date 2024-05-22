@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { Center, Box, Input, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { addFeed } from "@/redux/features/feedSlice";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { useAppSelector, AppDispatch } from "@/redux/store";
+import { months } from "@/constants/data";
 
 interface Post {
   text: string;
@@ -25,21 +26,20 @@ const TopInput = () => {
   const handleClick = () => {
     if (isAuth) {
       const d = new Date();
-      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const months = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-      ];
+      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; // first letter is capital here
 
       const post: Post = {
         text: inputValue,
         id: Date.now(),
-        posted_on: `${daysOfWeek[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()} ${d.getFullYear()}`,
+        posted_on: `${daysOfWeek[d.getDay()]} ${
+          months[d.getMonth()]
+        } ${d.getDate()} ${d.getFullYear()}`,
       };
 
       dispatch(addFeed(post));
       setInputValue("");
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   };
 

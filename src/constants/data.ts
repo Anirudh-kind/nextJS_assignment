@@ -5,7 +5,7 @@ interface Post {
 }
 
 const data: Array<Post> = [
-  { text: "A great Post", id: 990, posted_on: "Fri Nov 27 2020" },
+  { text: "A great Post", id: 0, posted_on: "Fri Nov 27 2020" },
   {
     text: "Hi, I am new to this platform",
     id: 1,
@@ -56,6 +56,10 @@ const daysInWeek: Array<string> = [
   "sat",
 ];
 
+const months:Array<string>= [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+
 const aboutOptions: Array<string> = ["a", "b", "c", "d"];
 
-export { daysInWeek, data ,aboutOptions};
+export { daysInWeek, months,data ,aboutOptions};

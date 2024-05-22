@@ -6,8 +6,9 @@ interface Post {
   id: number;
   posted_on: string;
 }
-
+//ulta map kara do
 const initialState: Array<Post> = data; //[...data];
+console.log(initialState)
 export const feedSlice = createSlice({
   name: "feed",
   initialState,

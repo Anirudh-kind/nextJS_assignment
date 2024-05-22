@@ -24,7 +24,7 @@ const Feeds = () => {
 
   return (
     <div>
-      {filteredData.map((ele) => (
+      {filteredData.reverse().map((ele) => (
         <Link
           style={{ cursor: "pointer" }}
           href={isAuth ? `/detail/${ele.id}` : "/login"}
