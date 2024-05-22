@@ -56,4 +56,6 @@ const daysInWeek: Array<string> = [
   "sat",
 ];
 
-export { daysInWeek, data };
+const aboutOptions: Array<string> = ["a", "b", "c", "d"];
+
+export { daysInWeek, data ,aboutOptions};

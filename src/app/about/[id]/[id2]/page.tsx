@@ -5,13 +5,16 @@ import Link from "next/link";
 import useAuthRedirect from "@/hooks/useAuthRedirect";
 import { usePathname, useRouter } from "next/navigation";
 import useValidPath from "@/hooks/useValidPath";
+import { aboutOptions } from "@/constants/data";
 
 const About: React.FC = () => {
   const router = useRouter();
   const path = usePathname();
-  const options = ["a", "b", "c", "d"];
-  const { lastPathname, secondLastPathname, isValid } = useValidPath(path, options);
-  const userState = useAuthRedirect("/login", options, secondLastPathname);
+  const { lastPathname, secondLastPathname, isValid } = useValidPath(
+    path,
+    aboutOptions
+  );
+  const userState = useAuthRedirect("/login", aboutOptions, secondLastPathname);
 
   useEffect(() => {
     if (userState && !isValid) {
@@ -38,7 +41,7 @@ const About: React.FC = () => {
       <Grid h="100%" templateColumns="repeat(3, 1fr)" gap={1}>
         <Flex justifyContent="center" alignItems="center">
           <Box>
-            {options.map((ele) => (
+            {aboutOptions.map((ele) => (
               <Link key={ele} href={`/about/${ele}/1`}>
                 <Text
                   color={secondLastPathname === ele ? "red" : "grey.600"}
@@ -54,7 +57,7 @@ const About: React.FC = () => {
         </Flex>
         <Flex justifyContent="center" alignItems="center">
           <Box>
-            {options.map((ele, ind) => (
+            {aboutOptions.map((ele, ind) => (
               <Link
                 key={ind + 1}
                 href={`/about/${secondLastPathname}/${ind + 1}`}
@@ -83,8 +86,8 @@ const About: React.FC = () => {
               Details
             </Text>
             <Text>
-              {options.findIndex((ele) => ele === secondLastPathname) + 1} |{" "}
-              {lastPathname} 1
+              {aboutOptions.findIndex((ele) => ele === secondLastPathname) + 1}{" "}
+              | {lastPathname} 1
             </Text>
           </Box>
         </Flex>

@@ -5,7 +5,7 @@ import { useAppSelector } from "@/redux/store";
 
 const useAuthRedirect = (
   redirectPathIfUnauth: string,
-  options: string[] | null,
+  aboutOptions: string[] | null,
   currentPath: string | null
 ): boolean | undefined => {
   const userState = useAppSelector((state) => state.authSlice.isAuth);
@@ -14,10 +14,10 @@ const useAuthRedirect = (
   useEffect(() => {
     if (!userState) {
       router.push(redirectPathIfUnauth);
-    } else if (options && !options.includes(currentPath || "")) {
-      router.push(options[0]);// is wala case ma 'a'
+    } else if (aboutOptions && !aboutOptions.includes(currentPath || "")) {
+      router.push(aboutOptions[0]); // is wala case ma 'a'
     }
-  }, [userState, router, currentPath, options, redirectPathIfUnauth]);
+  }, [userState, router, currentPath, aboutOptions, redirectPathIfUnauth]);
 
   return userState;
 };

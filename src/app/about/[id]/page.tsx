@@ -5,12 +5,12 @@ import Link from "next/link";
 import useAuthRedirect from "@/hooks/useAuthRedirect";
 import { usePathname } from "next/navigation";
 import useValidPath from "@/hooks/useValidPath";
+import { aboutOptions } from "@/constants/data";
 
 const About: React.FC = () => {
   const path = usePathname();
-  const options = ["a", "b", "c", "d"];
-  const { lastPathname } = useValidPath(path, options);
-  const userState = useAuthRedirect("/login", options, lastPathname);
+  const { lastPathname } = useValidPath(path, aboutOptions);
+  const userState = useAuthRedirect("/login", aboutOptions, lastPathname);
 
   if (!userState) {
     return (
@@ -27,7 +27,7 @@ const About: React.FC = () => {
       <Grid h="100%" templateColumns="repeat(3, 1fr)" gap={1}>
         <Flex justifyContent="center" alignItems="center">
           <Box>
-            {options.map((ele) => (
+            {aboutOptions.map((ele) => (
               <Link key={ele} href={`/about/${ele}`}>
                 <Text
                   color={lastPathname === ele ? "red" : "grey.600"}
@@ -43,7 +43,7 @@ const About: React.FC = () => {
         </Flex>
         <Flex justifyContent="center" alignItems="center">
           <Box>
-            {options.map((ele, ind) => (
+            {aboutOptions.map((ele, ind) => (
               <Link key={ind + 1} href={`/about/${lastPathname}/${ind + 1}`}>
                 <Text color="grey.600" mt="4" mb="4">
                   <span style={{ textTransform: "uppercase" }}>
