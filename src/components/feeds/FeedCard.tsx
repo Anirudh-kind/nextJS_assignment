@@ -23,13 +23,7 @@ const FeedCard: React.FC<Props> = ({ content, date, id }: Props) => {
   };
 
   return (
-    <Box
-      mt="10"
-      boxShadow="0px 4px 6px rgba(0.2,0.2,0.2,0.2)"
-      w="80%"
-      p="4"
-      borderRadius="xl"
-      border="1px solid grey"
+    <Box mt="10" boxShadow="0px 4px 6px rgba(0.2,0.2,0.2,0.2)"w="80%"p="4" borderRadius="xl" border="1px solid grey"
     >
       <Text marginBottom="10px" as="b">
         {content}
