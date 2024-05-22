@@ -28,6 +28,6 @@
     ".next/types/**/*.ts",
     "src/components/chips/page.tsx",
     "src/app/page.tsx"
-  ],
+, "src/components/chips/MultiStep.jsx"  ],
   "exclude": ["node_modules"]
 }

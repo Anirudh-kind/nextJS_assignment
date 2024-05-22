@@ -14,7 +14,6 @@ interface Props {
 
 const FeedCard: React.FC<Props> = ({ content, date, id }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  // console.log(date);
 
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();

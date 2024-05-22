@@ -11,7 +11,7 @@ const Feeds = () => {
   const specificDay = useAppSelector((state) => state.specificDaySlice);
 
   const filteredData = useMemo(() => {
-    if (specificDay === "all") {
+    if (specificDay.length === 0) {
       return [...dataState].reverse();
     }
     return dataState
@@ -20,7 +20,7 @@ const Feeds = () => {
         const dayOfWeek = date
           .toLocaleString("en-US", { weekday: "short" })
           .toLowerCase();
-        return dayOfWeek === specificDay;
+        return specificDay.includes(dayOfWeek);
       })
       .reverse();
   }, [dataState, specificDay]);

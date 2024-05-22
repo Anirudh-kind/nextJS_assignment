@@ -1,18 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: string = "all";
+const initialState: Array<string> = [];
 
 export const specificDaySlice = createSlice({
   name: "specificDay",
   initialState,
   reducers: {
-    changeSpecificDay(state, action) {
-      state = action.payload;
-      return state;
+    pushNewDay(state, action) {
+      state.push(action.payload); 
+    },
+    removeDay(state, action) {
+      return state.filter((ele) => ele !== action.payload);
     },
   },
 });
 
-export const { changeSpecificDay } = specificDaySlice.actions;
+export const { pushNewDay, removeDay } = specificDaySlice.actions;
 
 export default specificDaySlice.reducer;
