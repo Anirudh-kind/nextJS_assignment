@@ -15,7 +15,7 @@ const useAuthRedirect = (
     if (!userState) {
       router.push(redirectPathIfUnauth);
     } else if (options && !options.includes(currentPath || "")) {
-      router.push(options[0]);
+      router.push(options[0]);// is wala case ma 'a'
     }
   }, [userState, router, currentPath, options, redirectPathIfUnauth]);
 

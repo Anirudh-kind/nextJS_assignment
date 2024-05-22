@@ -10,4 +10,3 @@ const validatePath = (path: string, options: string[]): { lastPathname: string, 
   };
   
   export default validatePath;
-  

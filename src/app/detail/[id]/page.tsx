@@ -1,17 +1,12 @@
 "use client";
-import { Box, Flex, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { data } from "@/constants/data";
 import { useAppSelector } from "@/redux/store";
+import { Box, Flex, Text } from "@chakra-ui/react";
+import React from "react";
 
 import { usePathname } from "next/navigation";
 
 const id: React.FC = () => {
-
-
   const dataState = useAppSelector((state) => state.feedSlice);
-
-
   const pathname: string = usePathname();
   // console.log(pathname.split("/"));
   const lastPathSegment = pathname.split("/").pop() || ""; // {|| ""} to remove TS warning

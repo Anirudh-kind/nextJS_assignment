@@ -16,9 +16,9 @@ const Page = () => {
       token: "dummy-token-12345",
     };
     sessionStorage.setItem("user", JSON.stringify(dummyUser));
-    router.push("/");
-    console.log("User logged in:", dummyUser);
     dispatch(logIn());
+    router.push("/");
+    // console.log("User logged in:", dummyUser);
   };
   return (
     <>
