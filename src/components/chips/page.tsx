@@ -23,13 +23,13 @@ const chips: React.FC = () => {
           colorScheme="blue"
         >
           <TagLabel>{ele}</TagLabel>
-          <TagCloseButton
+          {/* <TagCloseButton
             onClick={() => {
               const updatedDays = [...days];
               updatedDays.splice(index, 1);
               setDays(updatedDays);
             }}
-          />
+          /> */}
         </Tag>
       ))}
     </>
