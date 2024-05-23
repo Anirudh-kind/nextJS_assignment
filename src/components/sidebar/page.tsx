@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useDispatch } from "react-redux";
+import "./style.css";
 
 interface Point {
   name: string;
@@ -28,26 +29,12 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <Flex
-      position="fixed"
-      alignItems="center"
-      justifyContent="center"
-      borderRight="1px solid grey"
-      h="100vh"
-      w="10vw"
-    >
+    <Flex className="sidebar">
       <Box>
         {points.map((point, index) => (
-          <Box key={index} textAlign="center" mb={4}>
-            <Link
-              style={{
-                cursor: "pointer",
-                fontWeight: "bold",
-                display: "block",
-              }}
-              href={point.route}
-            >
-              <Box _hover={{ textDecoration: "underline" }}>{point.name}</Box>
+          <Box key={index} className="linkBox">
+            <Link href={point.route} className="link">
+              <Box>{point.name}</Box>
             </Link>
           </Box>
         ))}
@@ -57,14 +44,7 @@ const Sidebar: React.FC = () => {
             Logout
           </Button>
         ) : (
-          <Link
-            href="/login"
-            style={{
-              cursor: "pointer",
-              fontWeight: "bold",
-              display: "block",
-            }}
-          >
+          <Link href="/login" className="link">
             Login
           </Link>
         )}
