@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect,memo } from "react";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import useAuthRedirect from "@/hooks/useAuthRedirect";
 import { usePathname, useRouter } from "next/navigation";
 import useValidPath from "@/hooks/useValidPath";
 import { aboutOptions } from "@/constants/data";
-
 const About: React.FC = () => {
   const router = useRouter();
   const path = usePathname();
@@ -96,4 +95,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About;
+export default memo(About);

@@ -11,14 +11,7 @@ const RightBar: React.FC = () => {
   const specificDay = useAppSelector((state) => state.specificDaySlice);
   const dataState = useAppSelector((state) => state.feedSlice);
 
-  const postCounts: { [key: string]: number } = {
-    sun: 0,
-    mon: 0,
-    tue: 0,
-    wed: 0,
-    thu: 0,
-    fri: 0,
-    sat: 0,
+  const postCounts: { [key: string]: number } = {  sun: 0, mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sat: 0,
   };
 
   dataState.forEach((post) => {

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React,{memo} from "react";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import useAuthRedirect from "@/hooks/useAuthRedirect";
@@ -64,4 +64,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About;
+export default memo(About);
